@@ -51,32 +51,43 @@ class Segment:
         self.y1 = p1_y
 
 class KinematicChainProjector(ob.ProjectionEvaluator):
-    def __init__(self, space, proj_chain_count):
+    def __init__(self, space, proj_chain_count, link_length):
         super().__init__(space)
         self.proj_chain_count = proj_chain_count
-        # dimension = max(2, math.ceil(math.log(float(space.getDimension()))))
-        self.projectionMatrix = np.zeros((space.getDimension(), proj_chain_count))
-        # self.projectionMatrix = np.random.rand(space.getDimension(), dimension)
         self.space = space
+        self.link_length = link_length
 
     def getDimension(self):
-        return self.projectionMatrix.shape[1]
+        return 2
 
     def project(self, state, projection):
-
+        
         v = np.zeros(self.space.getDimension())
         for i in range(self.space.getDimension()):
             v[i] = state[i]
+        projection[:] = self.Forward_Kinematics(v,self.link_length)
         
-        for i in range(self.projectionMatrix.shape[0]):
-            for j in range(self.projectionMatrix.shape[1]):
-                if i == j:
-                    self.projectionMatrix[i, j] = 1
-
-        projection[:] = np.dot(v, self.projectionMatrix)
+        # For projection using number of links
+        # v = np.zeros(self.space.getDimension())
+        # for i in range(self.space.getDimension()):
+        #     v[i] = state[i]
+        # for i in range(self.projectionMatrix.shape[0]):
+        #     for j in range(self.projectionMatrix.shape[1]):
+        #         if i == j:
+        #             self.projectionMatrix[i, j] = 1
+        # projection[:] = np.dot(v, self.projectionMatrix)
+    
+    def Forward_Kinematics(self, state, l):
+        end_point = np.array([0,0])
+        for i in state:
+            end_point = end_point + np.array([l*np.cos(i),l*np.sin(i)])
+            # print(end_point)
+        return end_point
+        
 
 class KinematicChainSpace(ob.RealVectorStateSpace):
     def __init__(self, num_links, link_length, env=None, proj_chain_count=2):
+        
         super().__init__(num_links)
         self.linkLength = link_length
         self.environment = env
@@ -90,8 +101,7 @@ class KinematicChainSpace(ob.RealVectorStateSpace):
 
     def registerProjections(self):
         
-        self.registerDefaultProjection(KinematicChainProjector(self, self.proj_chain_count))
-        pass
+        self.registerDefaultProjection(KinematicChainProjector(self, self.proj_chain_count, self.linkLength))
 
     def distance(self, state1, state2):
 
