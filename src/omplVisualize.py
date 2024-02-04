@@ -8,7 +8,7 @@ import math
 class BenchmarkVisualize():
     def __init__(self, db_path):
         self.db = db_path
-        self.read_db(self.db)
+        self.read_db()
         
     
     def read_db(self):
