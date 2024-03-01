@@ -83,7 +83,8 @@ def createTestEnvironment(d):
 
 def ReadEnvironmentFromFile(Num):
     # env_file = open(f"environment_{d}.dat", "r")
-    path = '/home/dhrumil/WPI/Sem2/DR/Map/maps_txt/map_' + str(Num) + '.txt'
+    print(f"Reading Environment for map : {Num}")
+    path = '/home/vishwas/DR/kinematic/maps_txt/map_' + str(Num) + '.txt'
     file = open(path,'r')
     Data = eval(file.read())
     env = []
