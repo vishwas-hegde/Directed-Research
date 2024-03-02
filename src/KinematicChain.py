@@ -67,7 +67,7 @@ def optimize_param(Range, Goal_Bias, Proj_Links):
     
     if current_planner == 'RRT':
         planner = og.RRTConnect(si)
-        planner.setRange(2.8)   # Set the range of RRTConnect
+        planner.setRange(Range)   # Set the range of RRTConnect
     
     elif current_planner == 'KPIECE':
         planner = og.KPIECE1(si)    # Change Planner Here
@@ -77,11 +77,20 @@ def optimize_param(Range, Goal_Bias, Proj_Links):
     
     ss.setPlanner(planner)
     times = []
+    Break_Flag = False
+    Counter = 0
     for i in range(10):
-        start_time = time() 
-        solved = ss.solve(10.0)
-        end_time = time()
-        times.append(float(abs(start_time - end_time)))
+        while(Break_Flag == False):
+            start_time = time() 
+            solved = ss.solve(5.0)
+            end_time = time()
+            Status = ss.haveExactSolutionPath()
+            if Status == True or Counter == 5:
+                Break_Flag = True
+            else:
+                Counter += 1
+            times.append(float(abs(start_time - end_time)))
+            planner.clear()
     mean_time = np.mean(times)
     return mean_time
 
