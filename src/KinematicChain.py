@@ -15,9 +15,10 @@ from time import time
 import math
 from nevergrad.optimization import optimizerlib
 import nevergrad as ng
+from logger import SQLiteLogger
+
 
 Map_Num = 0
-
 def optimize_param(Range, Goal_Bias, Proj_Links):
     '''
     # Info:
@@ -91,6 +92,8 @@ def optimize_param(Range, Goal_Bias, Proj_Links):
                 Counter += 1
             times.append(float(abs(start_time - end_time)))
             planner.clear()
+            params = [Range, Goal_Bias, Proj_Links]
+            Logger.log(params, Status, Map_Num)
     mean_time = np.mean(times)
     return mean_time
 
@@ -98,34 +101,37 @@ def objective_function(Range, Goal_Bias, Num_Links):
     
     return optimize_param(Range, Goal_Bias, Num_Links)
 
-param = {}
-Num_Maps_To_Optimize = 2
+if __name__ == "__main__":
 
-for i in range(Num_Maps_To_Optimize):
     
-    # Define the parameter space
-    param1 = ng.p.Scalar(lower=0.01, upper=10)      # Range
-    param2 = ng.p.Scalar(lower=0.01, upper=0.7)     # Goal Bias
-    param3 = ng.p.Choice([1, 2, 3, 4, 5, 6, 7, 8])  # Number of Links for projection
+    param = {}
+    Num_Maps_To_Optimize = 2
+    Logger = SQLiteLogger("Logger.db")
+    for i in range(Num_Maps_To_Optimize):
+        
+        # Define the parameter space
+        param1 = ng.p.Scalar(lower=0.01, upper=10)      # Range
+        param2 = ng.p.Scalar(lower=0.01, upper=0.7)     # Goal Bias
+        param3 = ng.p.Choice([1, 2, 3, 4, 5, 6, 7, 8])  # Number of Links for projection
 
-    # Combine parameters into a list
-    param_list = [param1, param2, param3]
+        # Combine parameters into a list
+        param_list = [param1, param2, param3]
 
-    # Set the instrumentation
-    instrumentation = ng.p.Instrumentation(*param_list)
-    
-    # Define the optimization problem
-    optimizer = ng.optimizers.OnePlusOne(parametrization=instrumentation, budget=100)
-    
-    # Run the optimization process
-    recommendation = optimizer.minimize(objective_function)
+        # Set the instrumentation
+        instrumentation = ng.p.Instrumentation(*param_list)
+        
+        # Define the optimization problem
+        optimizer = ng.optimizers.OnePlusOne(parametrization=instrumentation, budget=100)
+        
+        # Run the optimization process
+        recommendation = optimizer.minimize(objective_function)
 
-    # Retrieve the optimal value of x
-    optimal_x = recommendation.value
+        # Retrieve the optimal value of x
+        optimal_x = recommendation.value
 
-    param[i] = optimal_x
-    Map_Num += 1
+        param[i] = optimal_x
+        Map_Num += 1
 
-print(param)
-with open('param.txt', 'w') as file:
-    file.write(str(param))
+    print(param)
+    with open('param.txt', 'w') as file:
+        file.write(str(param))
