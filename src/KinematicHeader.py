@@ -51,9 +51,9 @@ class Segment:
         self.y1 = p1_y
 
 class KinematicChainProjector(ob.ProjectionEvaluator):
-    def __init__(self, space, proj_chain_count, link_length):
+    def __init__(self, space, proj_link_count, link_length):
         super().__init__(space)
-        self.proj_chain_count = proj_chain_count
+        self.proj_link_count = proj_link_count
         self.space = space
         self.link_length = link_length
 
@@ -65,7 +65,7 @@ class KinematicChainProjector(ob.ProjectionEvaluator):
         v = np.zeros(self.space.getDimension())
         for i in range(self.space.getDimension()):
             v[i] = state[i]
-        projection[:] = self.Forward_Kinematics(v,self.link_length)
+        projection[:] = self.Forward_Kinematics(v,self.link_length, self.proj_link_count)
         
         # For projection using number of links
         # v = np.zeros(self.space.getDimension())
@@ -77,21 +77,22 @@ class KinematicChainProjector(ob.ProjectionEvaluator):
         #             self.projectionMatrix[i, j] = 1
         # projection[:] = np.dot(v, self.projectionMatrix)
     
-    def Forward_Kinematics(self, state, l):
+    def Forward_Kinematics(self, state, l, proj_link_count):
         end_point = np.array([0,0])
-        for i in state:
-            end_point = end_point + np.array([l*np.cos(i),l*np.sin(i)])
+        # for i in state:
+        for i in range(proj_link_count):
+            end_point = end_point + np.array([l*np.cos(state[i]),l*np.sin(state[i])])
             # print(end_point)
         return end_point
         
 
 class KinematicChainSpace(ob.RealVectorStateSpace):
-    def __init__(self, num_links, link_length, env=None, proj_chain_count=2):
+    def __init__(self, num_links, link_length, env=None, proj_link_count=2):
         
         super().__init__(num_links)
         self.linkLength = link_length
         self.environment = env
-        self.proj_chain_count = proj_chain_count
+        self.proj_link_count = proj_link_count
         bounds = ob.RealVectorBounds(num_links)
         bounds.setLow(-math.pi)
         bounds.setHigh(math.pi)
@@ -101,7 +102,7 @@ class KinematicChainSpace(ob.RealVectorStateSpace):
 
     def registerProjections(self):
         
-        self.registerDefaultProjection(KinematicChainProjector(self, self.proj_chain_count, self.linkLength))
+        self.registerDefaultProjection(KinematicChainProjector(self, self.proj_link_count, self.linkLength))
 
     def distance(self, state1, state2):
 
