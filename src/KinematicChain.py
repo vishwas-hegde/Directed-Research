@@ -78,9 +78,10 @@ def optimize_param(Range, Goal_Bias, Proj_Links):
     
     ss.setPlanner(planner)
     times = []
-    Break_Flag = False
+    
     Counter = 0
     for i in range(10):
+        Break_Flag = False
         while(Break_Flag == False):
             start_time = time() 
             solved = ss.solve(5.0)
@@ -105,7 +106,7 @@ if __name__ == "__main__":
 
     
     param = {}
-    Num_Maps_To_Optimize = 2
+    Num_Maps_To_Optimize = 16
     Logger = SQLiteLogger("Logger.db")
     for i in range(Num_Maps_To_Optimize):
         
