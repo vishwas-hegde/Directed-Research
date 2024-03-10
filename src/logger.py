@@ -14,13 +14,14 @@ class SQLiteLogger:
                           params TEXT,
                           status INTEGER,
                          mapnum INTEGER,
+                         executiontime FLOAT,                            
                          timestamp TEXT)''')
 
-    def log(self, params, status, mapnum):
+    def log(self, params, status, mapnum, executiontime):
         timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         with sqlite3.connect(self.db_name) as conn:
             c = conn.cursor()
-            c.execute("INSERT INTO logs (params, status, mapnum, timestamp) VALUES (?, ?, ?, ?)", (str(params), status, mapnum, timestamp))
+            c.execute("INSERT INTO logs (params, status, mapnum, executiontime, timestamp) VALUES (?, ?, ?, ?, ?)", (str(params), status, mapnum, executiontime ,timestamp))
 
     def fetch_logs(self):
         with sqlite3.connect(self.db_name) as conn:

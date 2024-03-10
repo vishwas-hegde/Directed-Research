@@ -98,8 +98,8 @@ def optimize_param(Range, Goal_Bias, Proj_Links):
             times.append(float(abs(start_time - end_time)))
             planner.clear()
             params = [Range, Goal_Bias, Proj_Links]
-            Logger.log(params, Status, Map_Num)
-            f.write(str(params) + " ," + str(Status) + " ," + str(Map_Num) + "\n")
+            Logger.log(params, Status, Map_Num, float(abs(start_time - end_time)))
+            f.write(str(params) + " ," + str(Status) + " ," + str(Map_Num) + str(float(abs(start_time - end_time))) + "\n")
     mean_time = np.mean(times)
     f.close()
     return mean_time
