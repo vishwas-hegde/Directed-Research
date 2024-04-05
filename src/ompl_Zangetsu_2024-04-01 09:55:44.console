@@ -1,0 +1,49 @@
+Info:    Beginning benchmark
+Info:    KPIECE1: Attempting to use default projection.
+Debug:   KPIECE1: Planner range detected to be 3.554306
+Info:    Preparing for run 0 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 20 states in 19 cells (0 internal + 19 external)
+Debug:   The solution path was slightly touching on an invalid region of the state space, but it was successfully fixed.
+Info:    SimpleSetup: Path simplification took 0.698694 seconds and changed from 10 to 8 states
+Info:    Preparing for run 1 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 60 states in 52 cells (0 internal + 52 external)
+Info:    SimpleSetup: Path simplification took 0.661747 seconds and changed from 17 to 9 states
+Info:    Preparing for run 2 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 128 states in 111 cells (0 internal + 111 external)
+Debug:   The solution path was slightly touching on an invalid region of the state space, but it was successfully fixed.
+Info:    SimpleSetup: Path simplification took 1.253542 seconds and changed from 33 to 10 states
+Info:    Preparing for run 3 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 57 states in 47 cells (0 internal + 47 external)
+Info:    SimpleSetup: Path simplification took 0.802430 seconds and changed from 22 to 10 states
+Info:    Preparing for run 4 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 160 states in 109 cells (2 internal + 107 external)
+Info:    SimpleSetup: Path simplification took 0.698275 seconds and changed from 23 to 9 states
+Info:    Preparing for run 5 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 127 states in 97 cells (1 internal + 96 external)
+Info:    SimpleSetup: Path simplification took 0.743074 seconds and changed from 32 to 8 states
+Info:    Preparing for run 6 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 390 states in 234 cells (20 internal + 214 external)
+Debug:   The solution path was slightly touching on an invalid region of the state space, but it was successfully fixed.
+Info:    SimpleSetup: Path simplification took 1.273651 seconds and changed from 47 to 9 states
+Info:    Preparing for run 7 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 26 states in 24 cells (0 internal + 24 external)
+Info:    SimpleSetup: Path simplification took 0.990988 seconds and changed from 8 to 6 states
+Info:    Preparing for run 8 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 86 states in 66 cells (0 internal + 66 external)
+Debug:   The solution path was slightly touching on an invalid region of the state space, but it was successfully fixed.
+Info:    SimpleSetup: Path simplification took 0.887188 seconds and changed from 32 to 9 states
+Info:    Preparing for run 9 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 142 states in 99 cells (2 internal + 97 external)
+Debug:   The solution path was slightly touching on an invalid region of the state space, but it was successfully fixed.
+Info:    SimpleSetup: Path simplification took 0.826739 seconds and changed from 31 to 8 states
+Info:    Benchmark complete

@@ -1,0 +1,63 @@
+Info:    Beginning benchmark
+Info:    KPIECE1: Attempting to use default projection.
+Debug:   KPIECE1: Planner range detected to be 3.554306
+Info:    Preparing for run 0 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    ProblemDefinition: Adding approximate solution from planner KPIECE1
+Info:    KPIECE1: Created 644 states in 208 cells (115 internal + 93 external)
+Info:    SimpleSetup: Path simplification took 0.792862 seconds and changed from 31 to 6 states
+Info:    Preparing for run 1 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    ProblemDefinition: Adding approximate solution from planner KPIECE1
+Info:    KPIECE1: Created 649 states in 227 cells (118 internal + 109 external)
+Debug:   The solution path was slightly touching on an invalid region of the state space, but it was successfully fixed.
+Info:    SimpleSetup: Path simplification took 0.618402 seconds and changed from 31 to 8 states
+Info:    Preparing for run 2 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    ProblemDefinition: Adding approximate solution from planner KPIECE1
+Info:    KPIECE1: Created 639 states in 223 cells (121 internal + 102 external)
+Info:    SimpleSetup: Path simplification took 0.703439 seconds and changed from 46 to 11 states
+Info:    Preparing for run 3 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    ProblemDefinition: Adding approximate solution from planner KPIECE1
+Info:    KPIECE1: Created 704 states in 257 cells (150 internal + 107 external)
+Warning: Solution path may slightly touch on an invalid region of the state space
+         at line 711 in /home/dhrumil/OMPL/ompl/src/ompl/geometric/src/PathSimplifier.cpp
+Warning: Solution path may slightly touch on an invalid region of the state space
+         at line 740 in /home/dhrumil/OMPL/ompl/src/ompl/geometric/src/PathSimplifier.cpp
+Info:    SimpleSetup: Path simplification took 1.474916 seconds and changed from 25 to 13 states
+Info:    Preparing for run 4 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 691 states in 241 cells (141 internal + 100 external)
+Warning: Solution path may slightly touch on an invalid region of the state space
+         at line 711 in /home/dhrumil/OMPL/ompl/src/ompl/geometric/src/PathSimplifier.cpp
+Warning: Solution path may slightly touch on an invalid region of the state space
+         at line 740 in /home/dhrumil/OMPL/ompl/src/ompl/geometric/src/PathSimplifier.cpp
+Info:    SimpleSetup: Path simplification took 1.689289 seconds and changed from 26 to 11 states
+Info:    Preparing for run 5 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    ProblemDefinition: Adding approximate solution from planner KPIECE1
+Info:    KPIECE1: Created 662 states in 233 cells (145 internal + 88 external)
+Info:    SimpleSetup: Path simplification took 0.778960 seconds and changed from 38 to 15 states
+Info:    Preparing for run 6 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    ProblemDefinition: Adding approximate solution from planner KPIECE1
+Info:    KPIECE1: Created 650 states in 234 cells (140 internal + 94 external)
+Info:    SimpleSetup: Path simplification took 0.633256 seconds and changed from 29 to 10 states
+Info:    Preparing for run 7 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 389 states in 162 cells (55 internal + 107 external)
+Debug:   The solution path was slightly touching on an invalid region of the state space, but it was successfully fixed.
+Info:    SimpleSetup: Path simplification took 0.961028 seconds and changed from 20 to 12 states
+Info:    Preparing for run 8 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    ProblemDefinition: Adding approximate solution from planner KPIECE1
+Info:    KPIECE1: Created 655 states in 219 cells (109 internal + 110 external)
+Debug:   The solution path was slightly touching on an invalid region of the state space, but it was successfully fixed.
+Info:    SimpleSetup: Path simplification took 0.521339 seconds and changed from 23 to 9 states
+Info:    Preparing for run 9 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    ProblemDefinition: Adding approximate solution from planner KPIECE1
+Info:    KPIECE1: Created 685 states in 262 cells (170 internal + 92 external)
+Info:    SimpleSetup: Path simplification took 0.805924 seconds and changed from 47 to 11 states
+Info:    Benchmark complete

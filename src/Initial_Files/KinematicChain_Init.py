@@ -33,7 +33,7 @@ def Benchmark(Map_Num):
     # env = createTestEnvironment(d=numLinks)
     env = ReadEnvironmentFromFile(Map_Num)
     # change link-length here
-    chain = KinematicChainSpace(num_links=numLinks, link_length=3.0 / float(numLinks), env=env, proj_link_count = 3)
+    chain = KinematicChainSpace(num_links=numLinks, link_length=3.0 / float(numLinks), env=env, proj_link_count = 5)
 
     # Use simple setup. Can be done without simpleSetup as well. Check file RigidBodyPlanning.py for example.
     ss = og.SimpleSetup(chain)
@@ -107,13 +107,15 @@ def Benchmark(Map_Num):
         b.addExperimentParameter("num_links", "INTEGER", str(numLinks))
         
         planner = og.KPIECE1(si)
+        planner.setRange(9.2)
+        planner.setGoalBias(0.21)
         b.addPlanner(planner)
         b.benchmark(request)
         b.saveResultsToFile(f"Map_{Map_Num}_{round(planner.getRange(),2)}_{planner.getGoalBias()}.log")
 
         Command = 'ompl_benchmark_statistics.py Map_'+str(Map_Num)+'_'+str(round(planner.getRange(),2))+'_'+str(planner.getGoalBias())+'.log -d database_'+str(Map_Num)+'.db'
         os.system(Command)
-
+        pass
         # db = "./benchmark.db"
         # vis = omplVisualize.BenchmarkVisualize(db)
         # vis.box_plot('time','plannerid')

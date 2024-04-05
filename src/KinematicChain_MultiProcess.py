@@ -17,10 +17,12 @@ from nevergrad.optimization import optimizerlib
 import nevergrad as ng
 from logger import SQLiteLogger
 import multiprocessing
+from pyswarms.single.global_best import GlobalBestPSO as PSO
+import json
 
 
 Map_Num = 0
-parameter_file_path = r"/home/vishwas/DR/kinematic/parameters/map_"
+# parameter_file_path = r"./parameters/map_"
 Logger = SQLiteLogger("Logger.db")
 def optimize_param(Range, Goal_Bias, Proj_Links):
     '''
@@ -35,7 +37,9 @@ def optimize_param(Range, Goal_Bias, Proj_Links):
     benchmarking = 'OFF'
     current_planner = 'KPIECE'
     
-    
+    Proj_Links = int(Proj_Links)
+    if Proj_Links == 0:
+        Proj_Links = 1
     print("Range:",Range)
     print("Goal Bias:",Goal_Bias)
     print("Number of Links for projection:",Proj_Links)
@@ -81,8 +85,8 @@ def optimize_param(Range, Goal_Bias, Proj_Links):
     
     ss.setPlanner(planner)
     times = []
-    file = parameter_file_path + str(Map_Num) + ".txt"
-    f = open(file, "w")
+    # file = parameter_file_path + str(Map_Num) + ".txt"
+    # f = open(file, "w")
     Counter = 0
     for i in range(10):
         Break_Flag = False
@@ -99,14 +103,19 @@ def optimize_param(Range, Goal_Bias, Proj_Links):
             planner.clear()
             params = [Range, Goal_Bias, Proj_Links]
             Logger.log(params, Status, Map_Num, float(abs(start_time - end_time)))
-            f.write(str(params) + " ," + str(Status) + " ," + str(Map_Num) + str(float(abs(start_time - end_time))) + "\n")
+            # f.write(str(params) + " ," + str(Status) + " ," + str(Map_Num) + str(float(abs(start_time - end_time))) + "\n")
     mean_time = np.mean(times)
-    f.close()
+    # f.close()
     return mean_time
 
-def objective_function(Range, Goal_Bias, Num_Links):
-    
-    return optimize_param(Range, Goal_Bias, Num_Links)
+def objective_function(x):
+    Results = []
+    for i in range(10):
+        Range, Goal_Bias, Proj_Links = x[i]
+        Result = optimize_param(Range, Goal_Bias, Proj_Links)
+        Results.append(Result)
+
+    return Results
 
 def multiprocess():
     param = {}
@@ -135,15 +144,48 @@ def multiprocess():
     param[i] = optimal_x
         # Map_Num += 1
 
+
+
 if __name__ == "__main__":
 
-    processes = []
-    for i in range(0,10):
-        Map_Num = i
-        p = multiprocessing.Process(target=multiprocess, args=())
-        processes.append(p)
-        p.start()
+    range_constraint = (0.01, 10.0)
+    bias_constraint = (0.0, 1.0)
+    projection_constraint = (1, 8)
+    
+    # Define bounds
+    lb = [range_constraint[0], bias_constraint[0], projection_constraint[0]]  # Lower bounds
+    ub = [range_constraint[1], bias_constraint[1], projection_constraint[1]]  # Upper bounds
+
+    bounds = (lb, ub)
+
+    # Set up the optimizer
+    options = {'c1': 0.5, 'c2': 0.5 , 'w':0.8}
+    optimizer = PSO(n_particles=10, dimensions=3, options=options, bounds=bounds)
+    Final_Dict = {}
+    for i in range(100):
+        # Perform optimization
+        best_cost, best_pos = optimizer.optimize(objective_function, iters=20)
+        Opt_Range, Opt_Goal_Bias, Opt_Proj_Links = best_pos
+        print('Range:', Opt_Range)
+        print('Goal Bias:', Opt_Goal_Bias)
+        print('Projection Links:', Opt_Proj_Links)
+        Dict = {}
+        Dict['Range'] = Opt_Range
+        Dict['Bias'] = Opt_Goal_Bias
+        Dict['Proj'] = Opt_Proj_Links
+        Final_Dict[str(i)] = Dict
+        f = open('/home/dhrumil/Git/Directed-Research/src/PSO.json','w')
+        json.dump(Final_Dict, indent=4, fp=f)
+        f.close()
+        Map_Num += 1
+    pass
+    # processes = []
+    # for i in range(0,10):
+    #     Map_Num = i
+    #     p = multiprocessing.Process(target=multiprocess, args=())
+    #     processes.append(p)
+    #     p.start()
         
-    for process in processes:
-        process.join()
+    # for process in processes:
+    #     process.join()
     

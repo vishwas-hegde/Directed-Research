@@ -1,0 +1,6 @@
+Info:    Beginning benchmark
+Info:    KPIECE1: Attempting to use default projection.
+Debug:   KPIECE1: Planner range detected to be 3.554306
+Info:    Preparing for run 0 of geometric_KPIECE1
+Info:    KPIECE1: Starting planning with 1 states already in datastructure
+Info:    KPIECE1: Created 59 states in 51 cells (1 internal + 50 external)

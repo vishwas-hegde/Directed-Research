@@ -1,0 +1,153 @@
+OMPL version 1.6.0
+Experiment KinematicChain
+1 experiment properties
+num_links INTEGER = 8
+Running on Zangetsu
+Starting at 2024-04-01 09:59:23
+<<<|
+Properties of the state space 'RealVectorSpace0'
+  - signature: 2 1 8 
+  - dimension: 8
+  - extent: 17.7715
+
+  - SANITY CHECKS FOR STATE SPACE ***DID NOT PASS*** (enforceBounds() seems to modify states that are in fact within bounds.)
+
+  - probability of valid states: 0.258
+  - average length of a valid motion: 2.18398
+  - average number of samples drawn per second: sampleUniform()=5.18148e+06 sampleUniformNear()=5.24585e+06 sampleGaussian()=2.98649e+06
+Settings for the state space 'RealVectorSpace0'
+  - state validity check resolution: 1%
+  - valid segment count factor: 1
+  - state space:
+Real vector state space 'RealVectorSpace0' of dimension 8 with bounds: 
+  - min: -3.14159 -3.14159 -3.14159 -3.14159 -3.14159 -3.14159 -3.14159 -3.14159 
+  - max: 3.14159 3.14159 3.14159 3.14159 3.14159 3.14159 3.14159 3.14159 
+
+Declared parameters:
+longest_valid_segment_fraction = 0.01
+projection.cellsize.0 = 0.191182
+projection.cellsize.1 = 0.14611
+projection.cellsize_factor = 0
+valid_segment_count_factor = 1
+Valid state sampler named uniform with parameters:
+nr_attempts = 100
+Planner KPIECE1 specs:
+Multithreaded:                 No
+Reports approximate solutions: Yes
+Can optimize solutions:        No
+Aware of the following parameters: border_fraction failed_expansion_score_factor goal_bias min_valid_path_fraction range
+Declared parameters for planner KPIECE1:
+border_fraction = 0.9
+failed_expansion_score_factor = 0.5
+goal_bias = 0.05
+min_valid_path_fraction = 0.2
+range = 0
+Start states:
+RealVectorState [0 0 0 0 0 0 0 0]
+Goal state, threshold = 2.22045e-16, memory address = 0x651431fb7c00, state = 
+RealVectorState [3.14159 0 0 0 0 0 0 0]
+OptimizationObjective = nullptr
+There are 0 solutions
+
+Properties of benchmarked planners:
+Planner KPIECE1 specs:
+Multithreaded:                 No
+Reports approximate solutions: Yes
+Can optimize solutions:        No
+Aware of the following parameters: border_fraction failed_expansion_score_factor goal_bias min_valid_path_fraction range
+|>>>
+<<<|
+Architecture:                       x86_64
+CPU op-mode(s):                     32-bit, 64-bit
+Address sizes:                      39 bits physical, 48 bits virtual
+Byte Order:                         Little Endian
+CPU(s):                             20
+On-line CPU(s) list:                0-19
+Vendor ID:                          GenuineIntel
+Model name:                         13th Gen Intel(R) Core(TM) i7-13700H
+CPU family:                         6
+Model:                              186
+Thread(s) per core:                 2
+Core(s) per socket:                 14
+Socket(s):                          1
+Stepping:                           2
+CPU max MHz:                        5000.0000
+CPU min MHz:                        400.0000
+BogoMIPS:                           5836.80
+Flags:                              fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize arch_lbr ibt flush_l1d arch_capabilities
+Virtualization:                     VT-x
+L1d cache:                          544 KiB (14 instances)
+L1i cache:                          704 KiB (14 instances)
+L2 cache:                           11.5 MiB (8 instances)
+L3 cache:                           24 MiB (1 instance)
+NUMA node(s):                       1
+NUMA node0 CPU(s):                  0-19
+Vulnerability Gather data sampling: Not affected
+Vulnerability Itlb multihit:        Not affected
+Vulnerability L1tf:                 Not affected
+Vulnerability Mds:                  Not affected
+Vulnerability Meltdown:             Not affected
+Vulnerability Mmio stale data:      Not affected
+Vulnerability Retbleed:             Not affected
+Vulnerability Spec rstack overflow: Not affected
+Vulnerability Spec store bypass:    Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:           Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:           Mitigation; Enhanced / Automatic IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence
+Vulnerability Srbds:                Not affected
+Vulnerability Tsx async abort:      Not affected
+|>>>
+1711979963687829 is the random seed
+5 seconds per run
+8192 MB per run
+10 runs per planner
+20.4355 seconds spent to collect the data
+1 enum type
+status|Unknown status|Invalid start|Invalid goal|Unrecognized goal type|Timeout|Approximate solution|Exact solution|Crash|Unknown status|Unknown status
+1 planners
+geometric_KPIECE1
+10 common properties
+border_fraction = 0.9
+failed_expansion_score_factor = 0.5
+goal_bias = 0.182826
+longest_valid_segment_fraction = 0.01
+min_valid_path_fraction = 0.2
+projection.cellsize.0 = 0.191182
+projection.cellsize.1 = 0.14611
+projection.cellsize_factor = 0
+range = 5.76508
+valid_segment_count_factor = 1
+22 properties for each run
+approximate solution BOOLEAN
+correct solution BOOLEAN
+correct solution strict BOOLEAN
+graph motions INTEGER
+graph states INTEGER
+memory REAL
+simplification time REAL
+simplified correct solution BOOLEAN
+simplified correct solution strict BOOLEAN
+simplified solution clearance REAL
+simplified solution length REAL
+simplified solution segments INTEGER
+simplified solution smoothness REAL
+solution clearance REAL
+solution difference REAL
+solution length REAL
+solution segments INTEGER
+solution smoothness REAL
+solved BOOLEAN
+status ENUM
+time REAL
+valid segment fraction REAL
+10 runs
+0; 1; 0; 59; 60; 191.574; 0.84319; 1; 1; 0; 33.2689; 6; 0.231111; 0; 0; 86.9514; 18; 3.69266; 1; 6; 0.639023; 0.0143885; 
+0; 0; 0; 27; 28; 191.574; 0.746292; 1; 1; 0; 29.9216; 5; 0.0382327; 0; 0; 72.3965; 13; 2.66449; 1; 6; 0.20548; 0.0348837; 
+0; 1; 0; 37; 38; 191.574; 0.879343; 1; 0; 0; 34.8595; 11; 0.899476; 0; 0; 89.9296; 20; 5.95945; 1; 6; 0.467602; 0.0148148; 
+0; 0; 0; 66; 67; 191.574; 0.697673; 1; 0; 0; 34.8946; 7; 0.286697; 0; 0; 78.5645; 14; 3.04001; 1; 6; 0.744823; 0.0109589; 
+0; 1; 1; 43; 44; 191.574; 0.80684; 1; 1; 0; 34.9111; 8; 0.231903; 0; 0; 76.1359; 14; 3.28797; 1; 6; 0.442789; 0.00423729; 
+0; 0; 0; 61; 62; 191.574; 0.783411; 1; 0; 0; 33.0627; 6; 0.403059; 0; 0; 71.5487; 19; 7.33252; 1; 6; 0.80199; 0.00161031; 
+0; 1; 1; 53; 54; 191.574; 0.779164; 1; 0; 0; 30.5482; 7; 0.393165; 0; 0; 50.5685; 9; 1.34375; 1; 6; 0.528974; 0.0168776; 
+0; 1; 1; 34; 35; 191.574; 0.880575; 1; 0; 0; 32.7318; 6; 0.228102; 0; 0; 43.2403; 11; 4.02035; 1; 6; 0.484026; 0.00824176; 
+0; 1; 1; 40; 41; 191.574; 0.862578; 1; 1; 0; 29.8444; 5; 0.241587; 0; 0; 157.415; 19; 2.16508; 1; 6; 0.50677; 0.0105263; 
+0; 1; 1; 57; 58; 191.574; 0.734972; 1; 0; 0; 36.5333; 7; 0.376224; 0; 0; 92.5298; 16; 2.96495; 1; 6; 0.611006; 0.017316; 
+.
