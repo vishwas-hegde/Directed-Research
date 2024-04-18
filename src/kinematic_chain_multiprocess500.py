@@ -135,23 +135,28 @@ def multiprocess():
     options = {'c1': 0.5, 'c2': 0.5 , 'w':0.8}
     optimizer = PSO(n_particles=10, dimensions=3, options=options, bounds=bounds)
     Final_Dict = {}
-    for i in range(100):
-        # Perform optimization
-        best_cost, best_pos = optimizer.optimize(objective_function, iters=20)
-        Opt_Range, Opt_Goal_Bias, Opt_Proj_Links = best_pos
-        print('Range:', Opt_Range)
-        print('Goal Bias:', Opt_Goal_Bias)
-        print('Projection Links:', Opt_Proj_Links)
-        Dict = {}
-        Dict['Range'] = Opt_Range
-        Dict['Bias'] = Opt_Goal_Bias
-        Dict['Proj'] = Opt_Proj_Links
-        Final_Dict[str(i)] = Dict
+    
+    # Perform optimization
+    best_cost, best_pos = optimizer.optimize(objective_function, iters=20)
+    Opt_Range, Opt_Goal_Bias, Opt_Proj_Links = best_pos
+    print('Map:', Map_Num)
+    print('Range:', Opt_Range)
+    print('Goal Bias:', Opt_Goal_Bias)
+    print('Projection Links:', Opt_Proj_Links)
+    Dict = {}
+    Dict['Range'] = Opt_Range
+    Dict['Bias'] = Opt_Goal_Bias
+    Dict['Proj'] = Opt_Proj_Links
+    Dict['Best_Cost'] = best_cost
+    Final_Dict[str(i)] = Dict
+    f = open('/home/dhrumil/Git/Directed-Research/src/PSO_Output/PSO_500_'+str(Map_Num)+'.json','w')
+    json.dump(Final_Dict, indent=4, fp=f)
+    f.close()
 
 if __name__ == "__main__":
 
     processes = []
-    for i in range(0,10):
+    for i in range(220,235):
         Map_Num = i
         p = multiprocessing.Process(target=multiprocess, args=())
         processes.append(p)
